@@ -11,7 +11,7 @@
 
 ## 🎮 デモ
 
-**[▶️ プレイする](https://your-username.github.io/farming-game/full_version/)**
+**[▶️ プレイする](https://prect8.github.io/farming-game/full_version/)**
 
 ## ✨ 特徴
 
@@ -30,14 +30,14 @@
 
 GitHub Pagesで公開中：
 ```
-https://your-username.github.io/farming-game/full_version/
+https://prect8.github.io/farming-game/full_version/
 ```
 
 ### ローカルでプレイ
 
 1. リポジトリをクローン
 ```bash
-git clone https://github.com/your-username/farming-game.git
+git clone https://github.com/prect8/farming-game.git
 cd farming-game
 ```
 
@@ -167,13 +167,13 @@ const story = {
 
 ## 🐛 バグ報告
 
-バグを見つけた場合は、[Issues](https://github.com/your-username/farming-game/issues)で報告してください。
+バグを見つけた場合は、[Issues](https://github.com/prect8/farming-game/issues)で報告してください。
 
 ## 📞 サポート
 
 質問や提案がある場合：
-- [Issues](https://github.com/your-username/farming-game/issues)を開く
-- [Discussions](https://github.com/your-username/farming-game/discussions)で議論
+- [Issues](https://github.com/prect8/farming-game/issues)を開く
+- [Discussions](https://github.com/prect8/farming-game/discussions)で議論
 
 ## 🙏 クレジット
 
@@ -192,7 +192,7 @@ const story = {
 
 ## 🌟 スター履歴
 
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/farming-game&type=Date)](https://star-history.com/#your-username/farming-game&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=prect8/farming-game&type=Date)](https://star-history.com/#prect8/farming-game&Date)
 
 ---
 
