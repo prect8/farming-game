@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Farmer's Story - Visual Novel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="title-container">
+                <h1 class="main-title">農家の物語</h1>
+                <p class="subtitle">成長と季節の物語</p>
+            </div>
+            <div class="menu">
+                <button id="btn-start" class="btn-primary">はじめから</button>
+                <button id="btn-gallery" class="btn-secondary">ギャラリー</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div id="background-layer"></div>
+            <div id="character-layer">
+                <img id="character-img" src="" alt="Character" class="character-sprite hidden">
+            </div>
+
+            <div class="ui-layer">
+                <div class="dialogue-box">
+                    <div class="name-tag" id="speaker-name">???</div>
+                    <div class="dialogue-text" id="dialogue-text"></div>
+                    <div class="controls">
+                        <!DOCTYPE html>
+                        <html lang="ja">
+
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>The Farmer's Story - Visual Novel</title>
+                            <link rel="preconnect" href="https://fonts.googleapis.com">
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                            <link
+                                href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;600&display=swap"
+                                rel="stylesheet">
+                            <link rel="stylesheet" href="style.css">
+                        </head>
+
+                        <body>
+                            <div id="app">
+                                <!-- Start Screen -->
+                                <div id="start-screen" class="screen active">
+                                    <div class="title-container">
+                                        <h1 class="main-title">農家の物語</h1>
+                                        <p class="subtitle">成長と季節の物語</p>
+                                    </div>
+                                    <div class="menu">
+                                        <button id="btn-start" class="btn-primary">はじめから</button>
+                                        <button id="btn-gallery" class="btn-secondary">ギャラリー</button>
+                                    </div>
+                                </div>
+
+                                <!-- Game Screen -->
+                                <div id="game-screen" class="screen">
+                                    <div id="background-layer"></div>
+                                    <div id="character-layer">
+                                        <img id="character-img" src="" alt="Character" class="character-sprite hidden">
+                                    </div>
+
+                                    <div class="ui-layer">
+                                        <div class="dialogue-box">
+                                            <div class="name-tag" id="speaker-name">???</div>
+                                            <div class="dialogue-text" id="dialogue-text"></div>
+                                            <div class="controls">
+                                                <button id="btn-next" class="control-btn">次へ ▼</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gallery Screen -->
+                                <div id="gallery-screen" class="screen">
+                                    <div class="gallery-header">
+                                        <h2>素材ギャラリー</h2>
+                                        <button id="btn-back-home" class="btn-small">戻る</button>
+                                    </div>
+                                    <div class="gallery-grid" id="gallery-grid">
+                                        <!-- Images will be injected here -->
+                                    </div>
+                                </div>
+                            </div>
+                            <script src="script.js"></script>
+                        </body>
+
+                        </html>

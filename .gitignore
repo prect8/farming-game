@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*~
+
+# Optional: 大きな音声ファイルを除外する場合
+# full_version/assets/audio/bgm/*.mp3
+# full_version/assets/audio/sfx/*.mp3

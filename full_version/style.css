@@ -1,0 +1,614 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ローディング画面 */
+#loading-screen {
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-content h1 {
+    font-size: 3rem;
+    color: #4ade80;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(74, 222, 128, 0.2);
+    border-top-color: #4ade80;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-content p {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* メニュー画面 */
+#menu-screen {
+    background: linear-gradient(135deg, #1a2e1a, #0f172a);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+#menu-screen h1 {
+    font-size: 4rem;
+    color: #4ade80;
+    margin-bottom: 2rem;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.menu-buttons button {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    background: #4ade80;
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 300px;
+    transition: all 0.3s;
+}
+
+.menu-buttons button:hover {
+    background: #22c55e;
+    transform: scale(1.05);
+}
+
+/* ギャラリー画面 */
+#gallery-screen {
+    background: #0a0a0a;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.gallery-header h2 {
+    font-size: 2.5rem;
+    color: #4ade80;
+}
+
+.btn-back {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 2px solid #4ade80;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: #4ade80;
+    color: #000;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item:hover {
+    border-color: #4ade80;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+}
+
+.gallery-item.locked {
+    filter: brightness(0.3);
+    cursor: not-allowed;
+}
+
+.gallery-item.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+}
+
+/* モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: 3px solid #4ade80;
+    border-radius: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4ade80;
+}
+
+.modal-close:hover {
+    background: #4ade80;
+    color: #000;
+}
+
+/* 設定画面 */
+#settings-screen {
+    background: linear-gradient(135deg, #1a2e1a, #0f172a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-container {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4ade80;
+    border-radius: 20px;
+    padding: 3rem;
+    min-width: 500px;
+}
+
+.settings-container h2 {
+    font-size: 2.5rem;
+    color: #4ade80;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.setting-item {
+    margin-bottom: 2rem;
+}
+
+.setting-item label {
+    display: block;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.setting-item input[type="range"] {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.setting-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4ade80;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.setting-item input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4ade80;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.setting-item span {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    color: #4ade80;
+    min-width: 50px;
+}
+
+.setting-item select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 2px solid #4ade80;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.setting-item select option {
+    background: #0f172a;
+    color: #fff;
+}
+
+.settings-container .btn-back {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+/* ゲーム画面 */
+#game-screen {
+    background: #000;
+}
+
+#bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#char-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+#char-container img {
+    max-height: 85%;
+    max-width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+    animation: charAppear 0.5s ease-out;
+}
+
+@keyframes charAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* キャラクター消える時 */
+#char-container.fade-out img {
+    animation: charDisappear 0.3s ease-out forwards;
+}
+
+@keyframes charDisappear {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* ゲーム内コントロール */
+#game-controls {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 50;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4ade80;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: #4ade80;
+    transform: scale(1.1);
+}
+
+.control-btn.active {
+    background: #4ade80;
+    color: #000;
+}
+
+#dialogue-box {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #4ade80;
+    border-radius: 10px;
+    padding: 2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: dialogueAppear 0.3s ease-out;
+}
+
+@keyframes dialogueAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+#speaker {
+    font-size: 1.3rem;
+    color: #4ade80;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    min-height: 3em;
+}
+
+#next-indicator {
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    color: #4ade80;
+    font-size: 1.5rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* 選択肢 */
+#choice-container {
+    position: absolute;
+    bottom: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 100;
+    animation: choiceAppear 0.5s ease-out;
+}
+
+@keyframes choiceAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+#choice-container.hidden {
+    display: none;
+}
+
+.choice-btn {
+    padding: 1.5rem 2rem;
+    font-size: 1.2rem;
+    background: rgba(74, 222, 128, 0.9);
+    color: #000;
+    border: 2px solid #22c55e;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-btn::before {
+    content: '▶';
+    position: absolute;
+    left: -20px;
+    transition: all 0.3s;
+}
+
+.choice-btn:hover::before {
+    left: 1rem;
+}
+
+.choice-btn:hover {
+    background: #22c55e;
+    padding-left: 3rem;
+    box-shadow: 0 5px 20px rgba(74, 222, 128, 0.5);
+}
+
+.choice-btn:active {
+    transform: scale(0.98);
+}
+
+.hidden {
+    display: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    #menu-screen h1 {
+        font-size: 2.5rem;
+    }
+
+    .menu-buttons button {
+        font-size: 1.2rem;
+        min-width: 250px;
+    }
+
+    #game-controls {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    #dialogue-box {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    #speaker {
+        font-size: 1.1rem;
+    }
+
+    #text {
+        font-size: 1.1rem;
+    }
+
+    #choice-container {
+        width: 90%;
+        bottom: 12rem;
+    }
+
+    .choice-btn {
+        font-size: 1rem;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .settings-container {
+        min-width: 90%;
+        padding: 2rem;
+    }
+}

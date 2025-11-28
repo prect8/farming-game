@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>農家の物語</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ローディング画面 -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <h1>農家の物語</h1>
+                <div class="loading-spinner"></div>
+                <p>読み込み中...</p>
+            </div>
+        </div>
+
+        <!-- メインメニュー -->
+        <div id="menu-screen" class="screen">
+            <h1>農家の物語</h1>
+            <div class="menu-buttons">
+                <button id="start-btn">はじめから</button>
+                <button id="gallery-btn">ギャラリー</button>
+                <button id="settings-btn">設定</button>
+            </div>
+        </div>
+
+        <!-- ギャラリー画面 -->
+        <div id="gallery-screen" class="screen">
+            <div class="gallery-header">
+                <h2>ギャラリー</h2>
+                <button id="gallery-back-btn" class="btn-back">戻る</button>
+            </div>
+            <div id="gallery-grid" class="gallery-grid"></div>
+        </div>
+
+        <!-- 設定画面 -->
+        <div id="settings-screen" class="screen">
+            <div class="settings-container">
+                <h2>設定</h2>
+                
+                <div class="setting-item">
+                    <label>BGM音量</label>
+                    <input type="range" id="bgm-volume" min="0" max="100" value="50">
+                    <span id="bgm-value">50%</span>
+                </div>
+
+                <div class="setting-item">
+                    <label>効果音音量</label>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="70">
+                    <span id="sfx-value">70%</span>
+                </div>
+
+                <div class="setting-item">
+                    <label>テキスト速度</label>
+                    <select id="text-speed">
+                        <option value="slow">遅い</option>
+                        <option value="normal" selected>普通</option>
+                        <option value="fast">速い</option>
+                    </select>
+                </div>
+
+                <button id="settings-back-btn" class="btn-back">戻る</button>
+            </div>
+        </div>
+
+        <!-- ゲーム画面 -->
+        <div id="game-screen" class="screen">
+            <div id="bg"></div>
+            <div id="char-container"></div>
+            
+            <!-- ゲーム内コントロール -->
+            <div id="game-controls">
+                <button id="btn-menu" class="control-btn" title="メニュー">📋</button>
+                <button id="btn-skip" class="control-btn" title="スキップ">⏩</button>
+                <button id="btn-auto" class="control-btn" title="オート">▶️</button>
+            </div>
+
+            <div id="dialogue-box">
+                <div id="speaker"></div>
+                <div id="text"></div>
+                <div id="next-indicator">▼</div>
+            </div>
+            <div id="choice-container" class="hidden"></div>
+        </div>
+    </div>
+    <script src="audio.js"></script>
+    <script src="story.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
