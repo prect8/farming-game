@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "name": "farming-game",
+  "builds": [
+    {
+      "src": "full_version/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/full_version/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/full_version/index.html"
+    }
+  ]
+}
