@@ -30,7 +30,7 @@ const AudioManager = {
         }
 
         // 新しいBGMを再生
-        const newBGM = new Audio(`assets/audio/bgm/${filename}.mp3`);
+        const newBGM = new Audio(`full_version/assets/audio/bgm/${filename}.mp3`);
         newBGM.loop = true;
         newBGM.volume = fadeIn ? 0 : this.bgm.volume;
 
@@ -72,7 +72,7 @@ const AudioManager = {
     playSFX(filename) {
         // キャッシュから取得または新規作成
         if (!this.sfx.cache[filename]) {
-            this.sfx.cache[filename] = new Audio(`assets/audio/sfx/${filename}.mp3`);
+            this.sfx.cache[filename] = new Audio(`full_version/assets/audio/sfx/${filename}.mp3`);
         }
 
         const sfx = this.sfx.cache[filename].cloneNode();

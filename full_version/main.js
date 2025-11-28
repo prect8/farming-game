@@ -215,7 +215,7 @@ const Game = {
 
         // 背景
         if (scene.bg) {
-            this.elements.bg.style.backgroundImage = `url('assets/images/${scene.bg}')`;
+            this.elements.bg.style.backgroundImage = `url('full_version/assets/images/${scene.bg}')`;
         }
 
         // キャラクター
@@ -318,11 +318,11 @@ const Game = {
             if (currentImg) {
                 container.classList.add('fade-out');
                 setTimeout(() => {
-                    container.innerHTML = `<img src="assets/images/${charImage}" alt="character">`;
+                    container.innerHTML = `<img src="full_version/assets/images/${charImage}" alt="character">`;
                     container.classList.remove('fade-out');
                 }, 300);
             } else {
-                container.innerHTML = `<img src="assets/images/${charImage}" alt="character">`;
+                container.innerHTML = `<img src="full_version/assets/images/${charImage}" alt="character">`;
             }
         } else {
             // キャラクターを消す
@@ -461,7 +461,7 @@ const Game = {
             const isUnlocked = this.isImageUnlocked(imageName);
             
             if (isUnlocked) {
-                item.innerHTML = `<img src="assets/images/${imageName}" alt="CG">`;
+                item.innerHTML = `<img src="full_version/assets/images/${imageName}" alt="CG">`;
                 item.addEventListener('click', () => {
                     this.showImageModal(imageName);
                 });
@@ -487,7 +487,7 @@ const Game = {
         modal.className = 'modal';
         modal.innerHTML = `
             <div class="modal-close">×</div>
-            <img src="assets/images/${imageName}" alt="CG">
+            <img src="full_version/assets/images/${imageName}" alt="CG">
         `;
 
         document.body.appendChild(modal);

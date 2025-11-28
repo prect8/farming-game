@@ -19,3 +19,4 @@ npm-debug.log*
 # Optional: 大きな音声ファイルを除外する場合
 # full_version/assets/audio/bgm/*.mp3
 # full_version/assets/audio/sfx/*.mp3
+.vercel
